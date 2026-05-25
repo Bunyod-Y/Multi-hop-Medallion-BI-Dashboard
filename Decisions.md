@@ -236,14 +236,6 @@ deletes files it does not recognise.
 
 ## Decision 7 — _ingested_at and _source_file audit columns
 
-**Choice:** Every Bronze row gets two metadata columns added before
-writing:
-
-```python
-.withColumn("_ingested_at", F.current_timestamp())
-.withColumn("_source_file", F.input_file_name())
-```
-
 **Alternatives considered:**
 - No audit columns — write only the source data
 - Store audit metadata in a separate audit table
