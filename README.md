@@ -114,8 +114,6 @@ NYC TLC Yellow Taxi  (Jan–Mar 2024, ~9M rows, ~150MB Parquet)
     └── dashboard_screenshot.png     ← screenshot of live dashboard
 ```
 
----
-
 ## Dataset
 
 **NYC TLC Yellow Taxi Trip Records**
@@ -131,30 +129,6 @@ NYC TLC Yellow Taxi  (Jan–Mar 2024, ~9M rows, ~150MB Parquet)
 
 Download the files directly into DBFS — no local machine needed.
 Run this in a Databricks notebook cell before anything else:
-
-```python
-import subprocess
-
-months = ["2024-01", "2024-02", "2024-03"]
-
-for m in months:
-    url  = f"https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{m}.parquet"
-    dest = f"/dbfs/FileStore/taxi/raw/yellow_tripdata_{m}.parquet"
-    subprocess.run(["wget", "-q", "-O", dest, url], check=True)
-    print(f"Downloaded: {m}")
-
-# Also download the zone lookup table
-subprocess.run([
-    "wget", "-q", "-O",
-    "/dbfs/FileStore/taxi/lookup/taxi_zone_lookup.csv",
-    "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
-], check=True)
-
-print("All files downloaded.")
-display(dbutils.fs.ls("dbfs:/FileStore/taxi/raw/"))
-```
-
----
 
 ## Setup
 
